@@ -1,12 +1,11 @@
 package com.epam.jpatask.dao;
 
-import com.epam.jpatask.entity.Project;
 import com.epam.jpatask.entity.Unit;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
-import javax.persistence.Persistence;
+import javax.persistence.*;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 
 public class UnitDAO {
 	
@@ -25,10 +24,12 @@ public class UnitDAO {
 	}
 	
 	public Unit findUnit(int id) {
-		EntityTransaction transaction = entityManager.getTransaction();
-		transaction.begin();
-		Unit unit = entityManager.find(Unit.class, id);
-		transaction.commit();
+		CriteriaBuilder builder = entityManager.getCriteriaBuilder();
+		CriteriaQuery<Unit> criteriaQuery = builder.createQuery(Unit.class);
+		Root<Unit> root = criteriaQuery.from(Unit.class);
+		criteriaQuery.select(root).where(builder.equal(root.get("unitId"), id));
+		Query query = entityManager.createQuery(criteriaQuery);
+		Unit unit = (Unit) query.getSingleResult();
 		return unit;
 	}
 	
