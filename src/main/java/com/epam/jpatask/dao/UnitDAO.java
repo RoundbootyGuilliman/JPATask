@@ -2,25 +2,20 @@ package com.epam.jpatask.dao;
 
 import com.epam.jpatask.entity.Unit;
 
+import javax.ejb.Stateless;
 import javax.persistence.*;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
+@Stateless
 public class UnitDAO {
 	
+	@PersistenceContext
 	private EntityManager entityManager;
 	
-	public UnitDAO() {
-		EntityManagerFactory factory = Persistence.createEntityManagerFactory("persistenceUnit");
-		entityManager = factory.createEntityManager();
-	}
-	
 	public void createUnit(Unit unit) {
-		EntityTransaction transaction = entityManager.getTransaction();
-		transaction.begin();
 		entityManager.persist(unit);
-		transaction.commit();
 	}
 	
 	public Unit findUnit(int id) {
@@ -34,16 +29,10 @@ public class UnitDAO {
 	}
 	
 	public void updateUnit(Unit unit) {
-		EntityTransaction transaction = entityManager.getTransaction();
-		transaction.begin();
 		entityManager.merge(unit);
-		transaction.commit();
 	}
 	
 	public void deleteUnit(int id) {
-		EntityTransaction transaction = entityManager.getTransaction();
-		transaction.begin();
 		entityManager.createQuery("delete from Unit u where u.unitId=:id").setParameter("id", id).executeUpdate();
-		transaction.commit();
 	}
 }

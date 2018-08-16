@@ -8,9 +8,12 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-	<title>Title</title>
+	<title>INDEX</title>
 </head>
 <body>
-
+<h1>АААААААААААААААААААААААААА!!!!!!!</h1>
+<form action="/main" method="post">
+	<input type="submit"/>
+</form>
 </body>
 </html>

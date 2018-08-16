@@ -1,21 +1,30 @@
-package com.epam.jpatask.app;
+package com.epam.jpatask.controller;
 
 import com.epam.jpatask.dao.EmployeeDAO;
 import com.epam.jpatask.dao.ProjectDAO;
 import com.epam.jpatask.dao.UnitDAO;
 import com.epam.jpatask.entity.*;
 
+import javax.inject.Inject;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.Arrays;
 import java.util.Date;
 
-public class Main {
+@WebServlet("/main")
+public class Main extends HttpServlet {
 	
-	public static void main(String[] args) {
-		
-		EmployeeDAO employeeDAO = new EmployeeDAO();
-		UnitDAO unitDAO = new UnitDAO();
-		ProjectDAO projectDAO = new ProjectDAO();
-
+	@Inject
+	EmployeeDAO employeeDAO;
+	@Inject
+	UnitDAO unitDAO;
+	@Inject
+	ProjectDAO projectDAO;
+	
+	@Override
+	protected void service(HttpServletRequest request, HttpServletResponse response) {
 		// create and persist new Unit
 		Unit unit = new Unit("Unit 1");
 		unitDAO.createUnit(unit);
@@ -23,7 +32,7 @@ public class Main {
 		// create and persist new Project
 		Project project = new Project("Project 1");
 		projectDAO.createProject(project);
-
+		
 		// create and persist new Employee "Bob"
 		Address address = new Address("US", "Boston", "23", "23", "55");
 		Personal personal = new Personal("Bob", "Smith", new Date());
@@ -44,5 +53,12 @@ public class Main {
 		// add Project 2 to Bob's list of projects
 		employeeDAO.assignToProject(employee.getEmployeeId(), project2.getProjectId());
 		
+		request.setAttribute("date", new Date());
+		
+		try {
+			request.getRequestDispatcher("WEB-INF/jsp/result.jsp").forward(request, response);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 }
