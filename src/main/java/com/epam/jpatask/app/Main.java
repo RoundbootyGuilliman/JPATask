@@ -44,8 +44,5 @@ public class Main {
 		// add Project 2 to Bob's list of projects
 		employeeDAO.assignToProject(employee.getEmployeeId(), project2.getProjectId());
 		
-		// execute named query
-		Employee bob = employeeDAO.executeNamedQuery("findBob");
-		
 	}
 }

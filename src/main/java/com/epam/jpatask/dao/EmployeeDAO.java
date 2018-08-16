@@ -4,11 +4,9 @@ import com.epam.jpatask.entity.Employee;
 import com.epam.jpatask.entity.Project;
 import com.epam.jpatask.entity.Unit;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
-import javax.persistence.Persistence;
+import javax.persistence.*;
 
+@NamedQuery(name = "deleteEmployee", query = "delete from Employee e where e.employeeId=:id")
 public class EmployeeDAO {
 	
 	private EntityManager entityManager;
@@ -44,7 +42,7 @@ public class EmployeeDAO {
 	public void deleteEmployee(int id) {
 		EntityTransaction transaction = entityManager.getTransaction();
 		transaction.begin();
-		entityManager.createQuery("delete from Employee e where e.employeeId=:id").setParameter("id", id).executeUpdate();
+		entityManager.createNamedQuery("deleteEmployee").setParameter("id", id).executeUpdate();
 		transaction.commit();
 	}
 	
@@ -68,13 +66,5 @@ public class EmployeeDAO {
 		
 		employee.getProjects().add(newProject);
 		updateEmployee(employee, employeeId);
-	}
-	
-	public Employee executeNamedQuery(String query) {
-		EntityTransaction transaction = entityManager.getTransaction();
-		transaction.begin();
-		Employee employee = entityManager.createNamedQuery(query, Employee.class).getSingleResult();
-		transaction.commit();
-		return employee;
 	}
 }
