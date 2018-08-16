@@ -1,9 +1,6 @@
 package com.epam.jpatask.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
@@ -11,7 +8,7 @@ public class Project {
 	
 	@Id
 	@GeneratedValue
-	private Long projectId;
+	private int projectId;
 	private String projectName;
 	@ManyToMany(mappedBy = "projects")
 	private List<Employee> employees;
@@ -19,16 +16,15 @@ public class Project {
 	public Project() {
 	}
 	
-	public Project(String projectName, List<Employee> employees) {
+	public Project(String projectName) {
 		this.projectName = projectName;
-		this.employees = employees;
 	}
 	
-	public Long getProjectId() {
+	public int getProjectId() {
 		return projectId;
 	}
 	
-	public void setProjectId(Long projectId) {
+	public void setProjectId(int projectId) {
 		this.projectId = projectId;
 	}
 	
@@ -38,13 +34,5 @@ public class Project {
 	
 	public void setProjectName(String projectName) {
 		this.projectName = projectName;
-	}
-	
-	public List<Employee> getEmployees() {
-		return employees;
-	}
-	
-	public void setEmployees(List<Employee> employees) {
-		this.employees = employees;
 	}
 }

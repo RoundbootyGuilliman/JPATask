@@ -8,7 +8,7 @@ public class Unit {
 	
 	@Id
 	@GeneratedValue
-	private Long unitId;
+	private int unitId;
 	private String unitName;
 	@OneToMany(mappedBy = "unit")
 	private List<Employee> employees;
@@ -16,16 +16,15 @@ public class Unit {
 	public Unit() {
 	}
 	
-	public Unit(String unitName, List<Employee> employees) {
+	public Unit(String unitName) {
 		this.unitName = unitName;
-		this.employees = employees;
 	}
 	
-	public Long getUnitId() {
+	public int getUnitId() {
 		return unitId;
 	}
 	
-	public void setUnitId(Long unitId) {
+	public void setUnitId(int unitId) {
 		this.unitId = unitId;
 	}
 	
@@ -35,13 +34,5 @@ public class Unit {
 	
 	public void setUnitName(String unitName) {
 		this.unitName = unitName;
-	}
-	
-	public List<Employee> getEmployees() {
-		return employees;
-	}
-	
-	public void setEmployees(List<Employee> employees) {
-		this.employees = employees;
 	}
 }

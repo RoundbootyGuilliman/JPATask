@@ -4,11 +4,12 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
+@NamedQuery(name = "findBob", query = "select employee from Employee employee where employee.personal.firstName = 'Bob'")
 public class Employee {
 	
 	@Id
 	@GeneratedValue
-	private Long employeeId;
+	private int employeeId;
 	private String title;
 	@Enumerated(EnumType.STRING)
 	private EmployeeStatus employeeStatus;
@@ -41,11 +42,11 @@ public class Employee {
 		this.projects = projects;
 	}
 	
-	public Long getEmployeeId() {
+	public int getEmployeeId() {
 		return employeeId;
 	}
 	
-	public void setEmployeeId(Long employeeId) {
+	public void setEmployeeId(int employeeId) {
 		this.employeeId = employeeId;
 	}
 	

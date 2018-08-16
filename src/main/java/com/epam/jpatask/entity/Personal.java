@@ -8,7 +8,7 @@ public class Personal {
 	
 	@Id
 	@GeneratedValue
-	private Long employeeId;
+	private int personalId;
 	private String firstName;
 	private String lastName;
 	@Temporal(TemporalType.DATE)
@@ -19,19 +19,18 @@ public class Personal {
 	public Personal() {
 	}
 	
-	public Personal(String firstName, String lastName, Date birthday, Employee employee) {
+	public Personal(String firstName, String lastName, Date birthday) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.birthday = birthday;
-		this.employee = employee;
 	}
 	
-	public Long getEmployeeId() {
-		return employeeId;
+	public int getPersonalId() {
+		return personalId;
 	}
 	
-	public void setEmployeeId(Long employeeId) {
-		this.employeeId = employeeId;
+	public void setPersonalId(int employeeId) {
+		this.personalId = employeeId;
 	}
 	
 	public String getFirstName() {
@@ -56,13 +55,5 @@ public class Personal {
 	
 	public void setBirthday(Date birthday) {
 		this.birthday = birthday;
-	}
-	
-	public Employee getEmployee() {
-		return employee;
-	}
-	
-	public void setEmployee(Employee employee) {
-		this.employee = employee;
 	}
 }
