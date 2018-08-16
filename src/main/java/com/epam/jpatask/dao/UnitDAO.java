@@ -11,7 +11,7 @@ import javax.persistence.criteria.Root;
 @Stateless
 public class UnitDAO {
 	
-	@PersistenceContext
+	@PersistenceContext(unitName = "persistenceUnit")
 	private EntityManager entityManager;
 	
 	public void createUnit(Unit unit) {

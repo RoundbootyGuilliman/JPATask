@@ -7,11 +7,11 @@ import com.epam.jpatask.entity.Unit;
 import javax.ejb.Stateless;
 import javax.persistence.*;
 
-@NamedQuery(name = "deleteEmployee", query = "delete from Employee e where e.employeeId=:id")
+
 @Stateless
 public class EmployeeDAO {
 	
-	@PersistenceContext
+	@PersistenceContext(unitName = "persistenceUnit")
 	private EntityManager entityManager;
 	
 	public void createEmployee(Employee employee) {
@@ -29,7 +29,8 @@ public class EmployeeDAO {
 	}
 	
 	public void deleteEmployee(int id) {
-		entityManager.createNamedQuery("deleteEmployee").setParameter("id", id).executeUpdate();
+		//entityManager.createNamedQuery("deleteEmployee").setParameter("id", id).executeUpdate();
+		entityManager.remove(findEmployee(id));
 	}
 	
 	public void addToUnit(int employeeId, int unitId) {

@@ -8,7 +8,7 @@ import javax.persistence.*;
 @Stateless
 public class ProjectDAO {
 	
-	@PersistenceContext
+	@PersistenceContext(unitName = "persistenceUnit")
 	private EntityManager entityManager;
 	
 	public void createProject(Project project) {
