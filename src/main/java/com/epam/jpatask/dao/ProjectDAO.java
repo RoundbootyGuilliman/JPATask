@@ -2,29 +2,46 @@ package com.epam.jpatask.dao;
 
 import com.epam.jpatask.entity.Project;
 
-import javax.ejb.Stateless;
-import javax.persistence.*;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
+import javax.persistence.Persistence;
 
-@Stateless
 public class ProjectDAO {
 	
-	@PersistenceContext(unitName = "persistenceUnit")
 	private EntityManager entityManager;
 	
+	public ProjectDAO() {
+		EntityManagerFactory factory = Persistence.createEntityManagerFactory("persistenceUnit");
+		entityManager = factory.createEntityManager();
+	}
+	
 	public void createProject(Project project) {
+		EntityTransaction transaction = entityManager.getTransaction();
+		transaction.begin();
 		entityManager.persist(project);
+		transaction.commit();
 	}
 	
 	public Project findProject(int id) {
+		EntityTransaction transaction = entityManager.getTransaction();
+		transaction.begin();
 		Project project = entityManager.find(Project.class, id);
+		transaction.commit();
 		return project;
 	}
 	
 	public void updateProject(Project project) {
+		EntityTransaction transaction = entityManager.getTransaction();
+		transaction.begin();
 		entityManager.merge(project);
+		transaction.commit();
 	}
 	
 	public void deleteProject(int id) {
-		entityManager.createNativeQuery("DELETE FROM PROJECT WHERE projectId=?").setParameter(1, id).executeUpdate();;
+		EntityTransaction transaction = entityManager.getTransaction();
+		transaction.begin();
+		entityManager.createNativeQuery("DELETE FROM PROJECT WHERE projectId=?").setParameter(1, id).executeUpdate();
+		transaction.commit();
 	}
 }

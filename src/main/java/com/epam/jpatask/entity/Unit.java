@@ -1,12 +1,10 @@
 package com.epam.jpatask.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
+@NamedQuery(name = "deleteUnit", query = "delete from Unit u where u.unitId=:id")
 public class Unit {
 	
 	@Id

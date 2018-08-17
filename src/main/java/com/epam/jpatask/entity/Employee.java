@@ -4,7 +4,6 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@NamedQuery(name = "deleteEmployee", query = "delete from Employee e where e.employeeId=:id")
 public class Employee {
 	
 	@Id
@@ -16,7 +15,7 @@ public class Employee {
 	@Embedded
 	private Address address;
 	
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "personal_fk")
 	private Personal personal;
 	
