@@ -6,13 +6,10 @@ import com.epam.jpatask.dao.UnitDAO;
 import com.epam.jpatask.entity.*;
 
 import javax.inject.Inject;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.transaction.Transactional;
 import java.util.Arrays;
 import java.util.Date;
 

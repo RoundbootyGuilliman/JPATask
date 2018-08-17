@@ -5,7 +5,8 @@ import com.epam.jpatask.entity.Project;
 import com.epam.jpatask.entity.Unit;
 
 import javax.ejb.Stateless;
-import javax.persistence.*;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 
 @Stateless
