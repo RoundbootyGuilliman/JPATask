@@ -11,9 +11,8 @@ public class ProjectDAO {
 	
 	private EntityManager entityManager;
 	
-	public ProjectDAO() {
-		EntityManagerFactory factory = Persistence.createEntityManagerFactory("persistenceUnit");
-		entityManager = factory.createEntityManager();
+	public ProjectDAO(EntityManager entityManager) {
+		this.entityManager = entityManager;
 	}
 	
 	public void createProject(Project project) {
@@ -42,6 +41,13 @@ public class ProjectDAO {
 		EntityTransaction transaction = entityManager.getTransaction();
 		transaction.begin();
 		entityManager.createNativeQuery("DELETE FROM PROJECT WHERE projectId=?").setParameter(1, id).executeUpdate();
+		transaction.commit();
+	}
+	
+	public void deleteAllProjects() {
+		EntityTransaction transaction = entityManager.getTransaction();
+		transaction.begin();
+		entityManager.createQuery("delete from Project").executeUpdate();
 		transaction.commit();
 	}
 }

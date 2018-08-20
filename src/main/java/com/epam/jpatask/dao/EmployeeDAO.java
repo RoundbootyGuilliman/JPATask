@@ -14,9 +14,8 @@ public class EmployeeDAO {
 	
 	private EntityManager entityManager;
 	
-	public EmployeeDAO() {
-		EntityManagerFactory factory = Persistence.createEntityManagerFactory("persistenceUnit");
-		entityManager = factory.createEntityManager();
+	public EmployeeDAO(EntityManager entityManager) {
+		this.entityManager = entityManager;
 	}
 	
 	public void createEmployee(Employee employee) {
@@ -47,6 +46,13 @@ public class EmployeeDAO {
 		EntityTransaction transaction = entityManager.getTransaction();
 		transaction.begin();
 		entityManager.remove(employee);
+		transaction.commit();
+	}
+	
+	public void deleteAllEmployees() {
+		EntityTransaction transaction = entityManager.getTransaction();
+		transaction.begin();
+		entityManager.createQuery("delete from Employee").executeUpdate();
 		transaction.commit();
 	}
 	

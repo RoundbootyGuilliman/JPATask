@@ -11,9 +11,8 @@ public class UnitDAO {
 	
 	private EntityManager entityManager;
 	
-	public UnitDAO() {
-		EntityManagerFactory factory = Persistence.createEntityManagerFactory("persistenceUnit");
-		entityManager = factory.createEntityManager();
+	public UnitDAO(EntityManager entityManager) {
+		this.entityManager = entityManager;
 	}
 	
 	public void createUnit(Unit unit) {
@@ -48,6 +47,13 @@ public class UnitDAO {
 		EntityTransaction transaction = entityManager.getTransaction();
 		transaction.begin();
 		entityManager.createNamedQuery("deleteUnit").setParameter("id", id).executeUpdate();
+		transaction.commit();
+	}
+	
+	public void deleteAllUnits() {
+		EntityTransaction transaction = entityManager.getTransaction();
+		transaction.begin();
+		entityManager.createQuery("delete from Unit").executeUpdate();
 		transaction.commit();
 	}
 }
