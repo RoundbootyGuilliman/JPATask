@@ -21,6 +21,11 @@ public class Main {
 		EmployeeDAO employeeDAO = new EmployeeDAO(entityManager);
 		UnitDAO unitDAO = new UnitDAO(entityManager);
 		ProjectDAO projectDAO = new ProjectDAO(entityManager);
+		
+		employeeDAO.deleteAllEmployees();
+		unitDAO.deleteAllUnits();
+		projectDAO.deleteAllProjects();
+		
 
 
 		// create and persist new Unit
@@ -36,7 +41,6 @@ public class Main {
 		Personal personal = new Personal("Bob", "Smith", new Date());
 		Employee employee = new Employee("Cleaning manager", EmployeeStatus.ACTIVE, address, personal, unit,
 				new ArrayList<Project>(){{add(project);}});
-		employee.setEmployeeId(23);
 		employeeDAO.createEmployee(employee);
 
 		// create and persist second Unit
@@ -53,9 +57,6 @@ public class Main {
 		// add Project 2 to Bob's list of projects
 		employeeDAO.assignToProject(employee.getEmployeeId(), project2.getProjectId());
 		
-//		employeeDAO.deleteAllEmployees();
-//		unitDAO.deleteAllUnits();
-//		projectDAO.deleteAllProjects();
 		
 		entityManager.close();
 		factory.close();

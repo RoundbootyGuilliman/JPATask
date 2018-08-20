@@ -3,8 +3,6 @@ package com.epam.jpatask.entity;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import java.util.List;
 
 @Entity
 public class Project {
@@ -13,8 +11,6 @@ public class Project {
 	@GeneratedValue
 	private int projectId;
 	private String projectName;
-	@ManyToMany(mappedBy = "projects")
-	private List<Employee> employees;
 	
 	public Project() {
 	}

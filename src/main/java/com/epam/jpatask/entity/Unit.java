@@ -1,7 +1,9 @@
 package com.epam.jpatask.entity;
 
-import javax.persistence.*;
-import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.NamedQuery;
 
 @Entity
 @NamedQuery(name = "deleteUnit", query = "delete from Unit u where u.unitId=:id")
@@ -11,8 +13,6 @@ public class Unit {
 	@GeneratedValue
 	private int unitId;
 	private String unitName;
-	@OneToMany(mappedBy = "unit")
-	private List<Employee> employees;
 	
 	public Unit() {
 	}

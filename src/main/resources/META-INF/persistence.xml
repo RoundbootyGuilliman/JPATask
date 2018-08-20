@@ -16,7 +16,7 @@
 			<property name="javax.persistence.schema-generation-target" value="database"/>
 			<property name="javax.persistence.jdbc.driver" value="oracle.jdbc.OracleDriver"/>
 			<property name="javax.persistence.jdbc.url" value="jdbc:oracle:thin:@localhost:1521:xe"/>
-			<property name="javax.persistence.jdbc.user" value="shite"/>
+			<property name="javax.persistence.jdbc.user" value="jpatask"/>
 			<property name="javax.persistence.jdbc.password" value="sql"/>
 			<property name="hibernate.show_sql" value="true"/>
 			<property name="hibernate.hbm2ddl.auto" value="update"/>

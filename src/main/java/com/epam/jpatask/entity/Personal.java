@@ -13,8 +13,6 @@ public class Personal {
 	private String lastName;
 	@Temporal(TemporalType.DATE)
 	private Date birthday;
-	@OneToOne(mappedBy = "personal")
-	private Employee employee;
 	
 	public Personal() {
 	}
