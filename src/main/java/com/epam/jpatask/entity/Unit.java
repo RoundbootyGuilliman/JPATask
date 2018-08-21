@@ -3,18 +3,18 @@ package com.epam.jpatask.entity;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import java.util.List;
+import javax.persistence.NamedQuery;
 
 @Entity
+@NamedQuery(name = Unit.DELETE, query = "delete from Unit u where u.unitId=:id")
 public class Unit {
+	
+	public static final String DELETE = "Unit.delete";
 	
 	@Id
 	@GeneratedValue
 	private int unitId;
 	private String unitName;
-	@OneToMany(mappedBy = "unit")
-	private List<Employee> employees;
 	
 	public Unit() {
 	}

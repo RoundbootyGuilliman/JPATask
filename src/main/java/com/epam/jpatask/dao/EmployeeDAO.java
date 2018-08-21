@@ -17,21 +17,24 @@ public class EmployeeDAO {
 	
 	public void createEmployee(Employee employee) {
 		entityManager.persist(employee);
-		entityManager.persist(employee.getPersonal());
 	}
 	
 	public Employee findEmployee(int id) {
-		Employee employee = entityManager.find(Employee.class, id);
-		return employee;
+		return entityManager.find(Employee.class, id);
 	}
 	
-	public void updateEmployee(Employee employee, int id) {
+	public void updateEmployee(Employee employee) {
 		entityManager.merge(employee);
 	}
 	
 	public void deleteEmployee(int id) {
-		//entityManager.createNamedQuery("deleteEmployee").setParameter("id", id).executeUpdate();
-		entityManager.remove(findEmployee(id));
+		Employee employee = findEmployee(id);
+		entityManager.remove(employee);
+	}
+	
+	public void deleteAllEmployees() {
+		entityManager.createQuery("delete from Employee").executeUpdate();
+		entityManager.createQuery("delete from Personal").executeUpdate();
 	}
 	
 	public void addToUnit(int employeeId, int unitId) {
@@ -39,7 +42,7 @@ public class EmployeeDAO {
 		Unit newUnit = entityManager.find(Unit.class, unitId);
 		
 		employee.setUnit(newUnit);
-		updateEmployee(employee, employeeId);
+		updateEmployee(employee);
 	}
 	
 	public void assignToProject(int employeeId, int projectId) {
@@ -47,6 +50,7 @@ public class EmployeeDAO {
 		Project newProject = entityManager.find(Project.class, projectId);
 		
 		employee.getProjects().add(newProject);
-		updateEmployee(employee, employeeId);
+		updateEmployee(employee);
 	}
+	
 }

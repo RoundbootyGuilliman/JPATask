@@ -26,8 +26,7 @@ public class UnitDAO {
 		Root<Unit> root = criteriaQuery.from(Unit.class);
 		criteriaQuery.select(root).where(builder.equal(root.get("unitId"), id));
 		Query query = entityManager.createQuery(criteriaQuery);
-		Unit unit = (Unit) query.getSingleResult();
-		return unit;
+		return (Unit) query.getSingleResult();
 	}
 	
 	public void updateUnit(Unit unit) {
@@ -35,6 +34,11 @@ public class UnitDAO {
 	}
 	
 	public void deleteUnit(int id) {
-		entityManager.createQuery("delete from Unit u where u.unitId=:id").setParameter("id", id).executeUpdate();
+		entityManager.createNamedQuery(Unit.DELETE).setParameter("id", id).executeUpdate();
 	}
+	
+	public void deleteAllUnits() {
+		entityManager.createQuery("delete from Unit").executeUpdate();
+	}
+	
 }

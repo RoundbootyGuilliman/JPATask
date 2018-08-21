@@ -17,8 +17,7 @@ public class ProjectDAO {
 	}
 	
 	public Project findProject(int id) {
-		Project project = entityManager.find(Project.class, id);
-		return project;
+		return entityManager.find(Project.class, id);
 	}
 	
 	public void updateProject(Project project) {
@@ -26,6 +25,11 @@ public class ProjectDAO {
 	}
 	
 	public void deleteProject(int id) {
-		entityManager.createNativeQuery("DELETE FROM PROJECT WHERE projectId=?").setParameter(1, id).executeUpdate();;
+		entityManager.createNativeQuery("DELETE FROM PROJECT WHERE projectId=?").setParameter(1, id).executeUpdate();
 	}
+	
+	public void deleteAllProjects() {
+		entityManager.createQuery("delete from Project").executeUpdate();
+	}
+	
 }

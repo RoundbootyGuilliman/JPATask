@@ -6,15 +6,11 @@
 			 version="2.1">
 	<persistence-unit name="persistenceUnit" transaction-type="JTA">
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-		<jta-data-source></jta-data-source>
+		<jta-data-source>java:global/jdbc/datasource</jta-data-source>
 		<class>com.epam.jpatask.entity.Employee</class>
 		<properties>
-			<property name="javax.persistence.schema-generation-action" value="drop-and-create"/>
-			<property name="javax.persistence.schema-generation-target" value="database"/>
-			<property name="javax.persistence.jdbc.driver" value="oracle.jdbc.OracleDriver"/>
-			<property name="javax.persistence.jdbc.url" value="jdbc:oracle:thin:@localhost:1521:xe"/>
-			<property name="javax.persistence.jdbc.user" value="shit"/>
-			<property name="javax.persistence.jdbc.password" value="sql"/>
+			<!--<property name="javax.persistence.schema-generation-action" value="drop-and-create"/>-->
+			<!--<property name="javax.persistence.schema-generation-target" value="database"/>-->
 			<property name="hibernate.dialect" value="org.hibernate.dialect.Oracle10gDialect"/>
 			<property name="hibernate.show_sql" value="true" />
 			<property name="hibernate.hbm2ddl.auto" value="update" />
