@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
 
 @DataSourceDefinition(
@@ -20,11 +19,7 @@ import java.util.Date;
 		name = "java:global/jdbc/datasource",
 		user = "jpatask",
 		password = "sql",
-		url = "jdbc:oracle:thin:@localhost:1521:xe",
-		properties = {
-				"javax.persistence.schema-generation-action=drop-and-create",
-				"javax.persistence.schema-generation-target=database"
-		}
+		url = "jdbc:oracle:thin:@localhost:1521:xe"
 )
 @WebServlet("/main")
 public class Main extends HttpServlet {
