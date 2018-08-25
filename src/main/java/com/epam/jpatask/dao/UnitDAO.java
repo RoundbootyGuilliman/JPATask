@@ -2,7 +2,6 @@ package com.epam.jpatask.dao;
 
 import com.epam.jpatask.entity.Unit;
 
-import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -10,7 +9,6 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
-@Stateless
 public class UnitDAO {
 	
 	@PersistenceContext(unitName = "persistenceUnit")

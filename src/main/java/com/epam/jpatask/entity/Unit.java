@@ -1,5 +1,7 @@
 package com.epam.jpatask.entity;
 
+import org.springframework.boot.autoconfigure.domain.EntityScan;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -37,5 +39,13 @@ public class Unit {
 	
 	public void setUnitName(String unitName) {
 		this.unitName = unitName;
+	}
+	
+	@Override
+	public String toString() {
+		return "Unit{" +
+				"unitId=" + unitId +
+				", unitName=\"" + unitName + "\"" +
+				'}';
 	}
 }

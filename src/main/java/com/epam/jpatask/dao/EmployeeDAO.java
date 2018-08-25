@@ -4,12 +4,10 @@ import com.epam.jpatask.entity.Employee;
 import com.epam.jpatask.entity.Project;
 import com.epam.jpatask.entity.Unit;
 
-import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 
-@Stateless
 public class EmployeeDAO {
 	
 	@PersistenceContext(unitName = "persistenceUnit")

@@ -2,11 +2,9 @@ package com.epam.jpatask.dao;
 
 import com.epam.jpatask.entity.Project;
 
-import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-@Stateless
 public class ProjectDAO {
 	
 	@PersistenceContext(unitName = "persistenceUnit")
